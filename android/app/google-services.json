@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "679428198488",
+    "project_id": "mussapp-d86af",
+    "storage_bucket": "mussapp-d86af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679428198488:android:e9fb0764d0dc75537cfa2d",
+        "android_client_info": {
+          "package_name": "com.example.mussapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679428198488-5tq0jgikfok5jbppkic6rgrbra372slq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIzeLvt0sSyteX20WcSpa8faW_O3uRrHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679428198488-5tq0jgikfok5jbppkic6rgrbra372slq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
