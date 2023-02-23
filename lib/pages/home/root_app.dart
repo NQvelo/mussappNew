@@ -43,7 +43,7 @@ class _RootAppState extends State<RootApp> {
     return Container(
       height: 110,
       decoration: const BoxDecoration(
-        color: Colors.black,
+        color: Color(0xff1B1A1C),
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40),

@@ -17,12 +17,23 @@ class _firstscrollviewState extends State<firstscrollview> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: const [
         categoriesview(),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
+        // Container(
+        //   height: 35,
+        //   alignment: const FractionalOffset(0.05, 0.0),
+        //   child: const Text(
+        //     'Editors picks',
+        //     style: TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 20,
+        //     ),
+        //   ),
+        // ),
         firstmusicview(),
       ],
     );
@@ -78,7 +89,7 @@ class _categoriesviewState extends State<categoriesview> {
                     ),
                     activeMenu1 == index
                         ? Container(
-                            width: 15,
+                            width: 30,
                             height: 1,
                             decoration: BoxDecoration(
                                 color: primary,
@@ -115,19 +126,19 @@ class _firstmusicviewState extends State<firstmusicview> {
                       child: AlbumPage(
                         song: songs[index],
                       ),
-                      type: PageTransitionType.scale));
+                      type: PageTransitionType.bottomToTop));
             },
             child: Column(
               children: [
                 Container(
-                  width: 180,
-                  height: 180,
+                  width: 154,
+                  height: 154,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(songs[index]['img']),
                           fit: BoxFit.cover),
                       color: primary,
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(5)),
                 ),
                 const SizedBox(
                   height: 20,
@@ -135,13 +146,15 @@ class _firstmusicviewState extends State<firstmusicview> {
                 Text(
                   songs[index]['title'],
                   style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w600),
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 SizedBox(
-                  width: 200,
+                  width: 140,
                   child: Text(
                     songs[index]['description'],
                     maxLines: 1,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:musapp/components/button.dart';
 import 'package:musapp/pages/home/home_page.dart';
+import '../../components/button.dart';
 import '../../services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
     return const Text(
       'Create account',
       style: TextStyle(
-          color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+          color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 
@@ -108,49 +108,6 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  // Widget _submitButton() {
-  //   return SizedBox(
-  //     width: 320,
-  //     height: 55,
-  //     child: ElevatedButton(
-  //       style: ButtonStyle(
-  //           shape: MaterialStateProperty.all(RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(90))),
-  //           backgroundColor: MaterialStateProperty.all<Color>(Colors.green)),
-  //       onPressed: () {
-  //         createUserWithEmailAndPassword();
-  //       },
-  //       child: const Text('Register'),
-  //     ),
-  //   );
-  // }
-
-  Widget _loginOrRegisterButton() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: SizedBox(
-        width: 320,
-        height: 55,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-                side: const BorderSide(
-                    width: 1, color: Color.fromARGB(255, 255, 255, 255)),
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Login',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,14 +139,12 @@ class _RegisterState extends State<Register> {
             const Padding(padding: EdgeInsets.all(10)),
 
             myButton(
-                'Create an Account',
+                'Create account',
                 Colors.white,
                 Colors.black,
                 Colors.transparent,
-                (() => {
-                      createUserWithEmailAndPassword(),
-                    }),
-                200),
+                (() => createUserWithEmailAndPassword()),
+                150),
           ],
         ),
       ),
