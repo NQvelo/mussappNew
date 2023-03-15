@@ -7,11 +7,12 @@ Widget myButton(
   Color borderColor,
   VoidCallback onPressed,
   double width,
+  double height,
 ) {
   return Container(
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
     width: width,
-    height: 49,
+    height: height,
     child: TextButton(
       style: ButtonStyle(
           shape: MaterialStateProperty.all(RoundedRectangleBorder(

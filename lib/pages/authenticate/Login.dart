@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:musapp/pages/home/home_page.dart';
 import '../../components/button.dart';
 import '../../services/auth.dart';
@@ -32,7 +33,7 @@ class _LoginState extends State<Login> {
 
   Widget title() {
     return const Text(
-      ' Login',
+      'Login',
       style: TextStyle(
           color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
     );
@@ -54,13 +55,14 @@ class _LoginState extends State<Login> {
     TextEditingController controller,
     // Color color,
     bool obscureText,
+    Icon buttonIcon,
   ) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -81,7 +83,7 @@ class _LoginState extends State<Login> {
               obscureText: obscureText,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Color.fromARGB(255, 119, 119, 119),
+                fillColor: const Color.fromARGB(255, 119, 119, 119),
                 hintText: title,
                 hintStyle:
                     const TextStyle(color: Color.fromARGB(223, 234, 234, 234)),
@@ -176,13 +178,23 @@ class _LoginState extends State<Login> {
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // logo(),
-            _entryField('Email', _controllerEmail, false),
-            _entryField('Password', _controllerPassword, true),
+            _entryField(
+              'Email',
+              _controllerEmail,
+              false,
+              Icon(Icons.person_outline),
+            ),
+            _entryField(
+              'Password',
+              _controllerPassword,
+              true,
+              Icon(Icons.remove_red_eye_sharp),
+            ),
             _errorMessage(),
             const Padding(padding: EdgeInsets.all(10)),
 
             myButton('Log in', Colors.white, Colors.black, Colors.transparent,
-                (() => signInWithEmailAndPassword()), 150),
+                (() => signInWithEmailAndPassword()), 150, 50),
           ],
         ),
       ),

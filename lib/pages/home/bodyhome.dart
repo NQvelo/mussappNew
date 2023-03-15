@@ -29,15 +29,6 @@ class _bodypageState extends State<bodypage> {
     await auth().signout();
   }
 
-  Widget signOutButton() {
-    return ElevatedButton(
-      onPressed: () async {
-        await signOut();
-      },
-      child: const Text('sign Out'),
-    );
-  }
-
   getBody() {
     return RefreshIndicator(
         edgeOffset: 10,
@@ -69,7 +60,6 @@ class _bodypageState extends State<bodypage> {
                   firstscrollview(songs.sublist(4)),
                 ],
               ),
-              signOutButton()
             ])));
   }
 }

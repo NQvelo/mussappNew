@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:musapp/components/button.dart';
+import 'package:musapp/components/scrollableList.dart';
 import 'package:musapp/pages/authenticate/Login.dart';
 import 'package:musapp/pages/authenticate/Register.dart';
-import 'package:musapp/pages/authenticate/login_or_signIn.dart';
 
-class welcomeScreen extends StatefulWidget {
-  const welcomeScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
   @override
-  State<welcomeScreen> createState() => _welcomeScreenState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _welcomeScreenState extends State<welcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget welcomeImg() {
     return FractionallySizedBox(
       alignment: Alignment.center,
@@ -33,7 +33,8 @@ class _welcomeScreenState extends State<welcomeScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => const Register()),
                   )),
-              337),
+              337,
+              50),
           const SizedBox(
             height: 12,
           ),
@@ -46,20 +47,22 @@ class _welcomeScreenState extends State<welcomeScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => const Register()),
                   )),
-              337),
+              337,
+              50),
           const SizedBox(
             height: 12,
           ),
           myButton(
               'Log in',
-              Color.fromARGB(0, 0, 0, 0),
+              const Color.fromARGB(0, 0, 0, 0),
               Colors.white,
               Colors.transparent,
               (() => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Login()),
                   )),
-              337),
+              337,
+              50),
         ],
       ),
     );
@@ -68,17 +71,17 @@ class _welcomeScreenState extends State<welcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(color: Color(0xff121212)),
+      backgroundColor: const Color(0xff121212),
+      body: SingleChildScrollView(
         child: Column(children: [
-          welcomeImg(),
+          Container(child: welcomeImg()),
           Column(
             children: [
               Image.asset('assets/images/logo.png',
-                  width: 60, height: 60, fit: BoxFit.fill),
+                  width: 50, height: 50, fit: BoxFit.fill),
               Container(
-                margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 width: 300,
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: const Text(
                   'Millions of Songs. Free on Spotify.',
                   style: TextStyle(
@@ -88,7 +91,9 @@ class _welcomeScreenState extends State<welcomeScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 35),
+              const SizedBox(
+                height: 50,
+              ),
               buttons(),
             ],
           ),

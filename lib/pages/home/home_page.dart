@@ -17,7 +17,7 @@ String greetings() {
 
   if (hour <= 12) {
     return 'Good Morning';
-  } else if (hour <= 17) {
+  } else if (hour < 17) {
     return 'Good Afternoon';
   }
   return 'Good Evening';
@@ -32,7 +32,7 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return Scaffold(
-      backgroundColor: Color(0xff1B1A1C),
+      backgroundColor: const Color(0xff1B1A1C),
       // ignore: prefer_const_constructors
       appBar: getAppBar(context),
       body: const bodypage(),

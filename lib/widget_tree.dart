@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musapp/pages/authenticate/Login.dart';
 import 'package:musapp/pages/authenticate/welcomeScreen.dart';
-import 'package:musapp/pages/home/home_page.dart';
 import 'package:musapp/pages/home/root_app.dart';
 import './services/auth.dart';
 
@@ -20,7 +18,7 @@ class _widget_treeState extends State<widget_tree> {
         if (snapshot.hasData) {
           return const RootApp();
         } else {
-          return const welcomeScreen();
+          return const WelcomeScreen();
         }
       },
     );

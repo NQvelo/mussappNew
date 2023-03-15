@@ -41,7 +41,7 @@ class _RootAppState extends State<RootApp> {
       FeatherIcons.user,
     ];
     return Container(
-      height: 110,
+      height: 100,
       decoration: const BoxDecoration(
         color: Color(0xff1B1A1C),
       ),

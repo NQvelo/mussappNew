@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musapp/pages/home/bodyhome.dart';
+import 'package:musapp/reusableWidgets/categories.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../json/songs_json.dart';
 import '../album_page.dart';
@@ -19,22 +20,15 @@ class _firstscrollviewState extends State<firstscrollview> {
     return Column(
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: const [
-        categoriesview(),
+        CategoriesWidget(Colors.accents),
         SizedBox(
           height: 10,
         ),
-        // Container(
-        //   height: 35,
-        //   alignment: const FractionalOffset(0.05, 0.0),
-        //   child: const Text(
-        //     'Editors picks',
-        //     style: TextStyle(
-        //       color: Colors.white,
-        //       fontSize: 20,
-        //     ),
-        //   ),
-        // ),
         firstmusicview(),
+        SizedBox(
+          height: 40,
+        ),
+        CategoriesWidget(Colors.accents),
       ],
     );
   }
@@ -49,63 +43,6 @@ class firstmusicview extends StatefulWidget {
 }
 
 // ignore: camel_case_types
-class categoriesview extends StatefulWidget {
-  const categoriesview({Key? key}) : super(key: key);
-
-  @override
-  State<categoriesview> createState() => _categoriesviewState();
-}
-
-// ignore: camel_case_types
-class _categoriesviewState extends State<categoriesview> {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 25.0, top: 20),
-        child: Row(
-          children: List.generate(song_type_1.length, (index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 40),
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    activeMenu1 = index;
-                  });
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      song_type_1[index],
-                      style: TextStyle(
-                          color: activeMenu1 == index ? primary : Colors.grey,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    activeMenu1 == index
-                        ? Container(
-                            width: 30,
-                            height: 1,
-                            decoration: BoxDecoration(
-                                color: primary,
-                                borderRadius: BorderRadius.circular(5)),
-                          )
-                        : Container(),
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
-      ),
-    );
-  }
-}
 
 // ignore: camel_case_types
 class _firstmusicviewState extends State<firstmusicview> {

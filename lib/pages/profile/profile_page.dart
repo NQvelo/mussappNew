@@ -17,7 +17,7 @@ class _profilepageState extends State<profilebody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xff1B1A1C),
       appBar: getAppBar(context),
       body: profileBody(context),
     );
@@ -27,7 +27,7 @@ class _profilepageState extends State<profilebody> {
 getAppBar(BuildContext context) {
   return AppBar(
     automaticallyImplyLeading: false,
-    backgroundColor: Colors.transparent,
+    backgroundColor: Color(0xff00667B),
     elevation: 0,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,12 +39,7 @@ getAppBar(BuildContext context) {
                 MaterialPageRoute(builder: (context) => const settingsPage()),
               );
             },
-            icon: const Icon(FeatherIcons.settings)),
-        const Text(
-          'My profile',
-          style: TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
+            icon: const Icon(FeatherIcons.arrowLeft)),
         IconButton(
             onPressed: () {
               Navigator.push(
@@ -52,7 +47,7 @@ getAppBar(BuildContext context) {
                 MaterialPageRoute(builder: (context) => const settingsPage()),
               );
             },
-            icon: const Icon(FeatherIcons.share)),
+            icon: const Icon(FeatherIcons.moreHorizontal)),
       ],
     ),
   );
