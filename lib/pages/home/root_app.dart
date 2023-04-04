@@ -28,7 +28,7 @@ class _RootAppState extends State<RootApp> {
   getBody() {
     return IndexedStack(
       index: activeTab,
-      children: const [homepage(), libraryPage(), searchPage(), profilebody()],
+      children: [homepage(), libraryPage(), searchPage(), profilebody()],
     );
   }
 
@@ -41,7 +41,7 @@ class _RootAppState extends State<RootApp> {
       FeatherIcons.user,
     ];
     return Container(
-      height: 100,
+      height: 60,
       decoration: const BoxDecoration(
         color: Color(0xff1B1A1C),
       ),

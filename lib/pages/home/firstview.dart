@@ -19,7 +19,7 @@ class _firstscrollviewState extends State<firstscrollview> {
   Widget build(BuildContext context) {
     return Column(
       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+      children: [
         CategoriesWidget(Colors.accents),
         SizedBox(
           height: 10,
@@ -29,6 +29,7 @@ class _firstscrollviewState extends State<firstscrollview> {
           height: 40,
         ),
         CategoriesWidget(Colors.accents),
+        Container()
       ],
     );
   }
