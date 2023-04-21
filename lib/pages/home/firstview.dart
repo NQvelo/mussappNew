@@ -18,23 +18,37 @@ class firstscrollview extends StatefulWidget {
 
 // ignore: camel_case_types
 class _firstscrollviewState extends State<firstscrollview> {
-  List _loadedPhotos = [];
+  // List _loadedPhotos = [];
 
   // The function that fetches data from the API
-  Future<void> _fetchData() async {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/photos';
+  // Future<void> _fetchData() async {
+  //   const apiUrl = 'https://jsonplaceholder.typicode.com/photos';
+  //
+  //   final response = await http.get(Uri.parse(apiUrl));
+  //   final data = json.decode(response.body);
+  //
+  //   setState(() {
+  //     _loadedPhotos = data;
+  //   });
+  // }
 
-    final response = await http.get(Uri.parse(apiUrl));
-    final data = json.decode(response.body);
 
-    setState(() {
-      _loadedPhotos = data;
-    });
+  Future<List<dynamic>> fetchphotos() async {
+    final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+    if (response.statusCode == 200) {
+      final jsonData = json.decode(response.body);
+      return jsonData;
+    } else {
+      throw Exception('Failed to fetch users');
+    }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Column(
+
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const CategoriesWidget(Colors.accents),
@@ -46,37 +60,68 @@ class _firstscrollviewState extends State<firstscrollview> {
             height: 40,
           ),
           const CategoriesWidget(Colors.accents),
-          SizedBox(
-              height: 1000,
-              child: _loadedPhotos.isEmpty
-                  ? Center(
-                      child: ElevatedButton(
-                        onPressed: _fetchData,
-                        child: const Text('Load Photos'),
-                      ),
-                    )
 
-                  // The ListView that displays photos
-                  : ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 100,
-                      itemBuilder: (BuildContext ctx, index) {
-                        return ListTile(
-                          leading: Image.network(
-                            _loadedPhotos[index]["thumbnailUrl"],
-                            fit: BoxFit.cover,
-                          ),
-                          title: Text(
-                            _loadedPhotos[index]['title'],
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                          subtitle: Text(
-                            'Photo ID: ${_loadedPhotos[index]["id"]}',
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      },
-                    )),
+
+
+          FutureBuilder<List<dynamic>>(
+            future: fetchphotos(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final users = snapshot.data!;
+                return ListView.builder(
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(users[index]['id']),
+
+                    );
+                  },
+
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('Error: ${snapshot.error}'),
+               
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+          // SizedBox(
+          //     height: 1000,
+          //     child: _loadedPhotos.isEmpty
+          //         ? Center(
+          //             child: ElevatedButton(
+          //               onPressed: _fetchData,
+          //               child: const Text('Load Photos'),
+          //             ),
+          //           )
+          //
+          //         // The ListView that displays photos
+          //         : ListView.builder(
+          //
+          //             physics: const NeverScrollableScrollPhysics(),
+          //             itemCount: 100,
+          //             itemBuilder: (BuildContext ctx, index) {
+          //               return ListTile(
+          //                 leading: Image.network(
+          //                   _loadedPhotos[index]["thumbnailUrl"],
+          //                   fit: BoxFit.cover,
+          //                 ),
+          //                 title: Text(
+          //                   _loadedPhotos[index]['title'],
+          //                   style: const TextStyle(color: Colors.white),
+          //                 ),
+          //                 subtitle: Text(
+          //                   'Photo ID: ${_loadedPhotos[index]["id"]}',
+          //                   style: const TextStyle(color: Colors.grey),
+          //                 ),
+          //               );
+          //             },
+          //           )),
         ]);
   }
 }
