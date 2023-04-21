@@ -28,6 +28,7 @@ class _homepageState extends State<homepage> {
   int activeMenu1 = 0;
 
   get primary => Colors.green;
+
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors

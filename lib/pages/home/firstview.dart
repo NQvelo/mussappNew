@@ -5,6 +5,9 @@ import 'package:page_transition/page_transition.dart';
 import '../../json/songs_json.dart';
 import '../album_page.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert'; // for using json.decode()
+
 // ignore: camel_case_types
 class firstscrollview extends StatefulWidget {
   const firstscrollview(List sublist, {Key? key}) : super(key: key);
@@ -15,25 +18,71 @@ class firstscrollview extends StatefulWidget {
 
 // ignore: camel_case_types
 class _firstscrollviewState extends State<firstscrollview> {
+  List _loadedPhotos = [];
+
+  // The function that fetches data from the API
+  Future<void> _fetchData() async {
+    const apiUrl = 'https://jsonplaceholder.typicode.com/photos';
+
+    final response = await http.get(Uri.parse(apiUrl));
+    final data = json.decode(response.body);
+
+    setState(() {
+      _loadedPhotos = data;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CategoriesWidget(Colors.accents),
-        SizedBox(
-          height: 10,
-        ),
-        firstmusicview(),
-        SizedBox(
-          height: 40,
-        ),
-        CategoriesWidget(Colors.accents),
-        Container()
-      ],
-    );
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const CategoriesWidget(Colors.accents),
+          const SizedBox(
+            height: 10,
+          ),
+          const firstmusicview(),
+          const SizedBox(
+            height: 40,
+          ),
+          const CategoriesWidget(Colors.accents),
+          SizedBox(
+              height: 1000,
+              child: _loadedPhotos.isEmpty
+                  ? Center(
+                      child: ElevatedButton(
+                        onPressed: _fetchData,
+                        child: const Text('Load Photos'),
+                      ),
+                    )
+
+                  // The ListView that displays photos
+                  : ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 100,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return ListTile(
+                          leading: Image.network(
+                            _loadedPhotos[index]["thumbnailUrl"],
+                            fit: BoxFit.cover,
+                          ),
+                          title: Text(
+                            _loadedPhotos[index]['title'],
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          subtitle: Text(
+                            'Photo ID: ${_loadedPhotos[index]["id"]}',
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+                        );
+                      },
+                    )),
+        ]);
   }
 }
+
+//   ],
+// );
 
 // ignore: camel_case_types
 class firstmusicview extends StatefulWidget {
@@ -42,8 +91,6 @@ class firstmusicview extends StatefulWidget {
   @override
   State<firstmusicview> createState() => _firstmusicviewState();
 }
-
-// ignore: camel_case_types
 
 // ignore: camel_case_types
 class _firstmusicviewState extends State<firstmusicview> {

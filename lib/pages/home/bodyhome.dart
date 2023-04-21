@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:musapp/pages/home/firstview.dart';
 import '../../json/songs_json.dart';
-import 'package:http/http.dart' as http;
 
 int activeMenu1 = 0;
 int activeMenu2 = 0;
@@ -23,22 +22,10 @@ class bodypage extends StatefulWidget {
 
 // ignore: camel_case_types
 class _bodypageState extends State<bodypage> {
-  Future getMusic() async {
-    http.Response response;
-    response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/'));
-    // if (response.statusCode == 200) {
-    // stringResponse = response.body;
-    if (response.body.isNotEmpty) {
-      json.decode(response.body);
-    }
-    mapResponse = json.decode(response.body);
-    dataResponse = mapResponse!["data"];
-  }
+  List _loadedPhotos = [];
 
   @override
   Widget build(BuildContext context) {
-    getMusic();
     return getBody();
   }
 

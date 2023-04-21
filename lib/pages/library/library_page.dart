@@ -18,7 +18,7 @@ class _libraryPageState extends State<libraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xff1B1A1C),
       appBar: getappBar(context),
       body: libraryBodypage(),
     );

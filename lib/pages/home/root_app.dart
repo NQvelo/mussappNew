@@ -5,6 +5,8 @@ import '../library/library_page.dart';
 import '../profile/profile_page.dart';
 import 'home_page.dart';
 
+import 'dart:io';
+
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
 
@@ -28,7 +30,7 @@ class _RootAppState extends State<RootApp> {
   getBody() {
     return IndexedStack(
       index: activeTab,
-      children: [homepage(), libraryPage(), searchPage(), profilebody()],
+      children: const [homepage(), libraryPage(), searchPage(), profilebody()],
     );
   }
 
@@ -41,12 +43,12 @@ class _RootAppState extends State<RootApp> {
       FeatherIcons.user,
     ];
     return Container(
-      height: 60,
+      height: Platform.isIOS ? 90 : 60,
       decoration: const BoxDecoration(
         color: Color(0xff1B1A1C),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 40, right: 40),
+        padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
         child: Row(
           // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

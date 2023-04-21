@@ -32,6 +32,7 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: getAppBar(),
       body: getBody(),
     );
@@ -63,34 +64,33 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
 
   getBody() {
     var size = MediaQuery.of(context).size;
+
     return Container(
+      height: size.height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [
-              widget.color,
-              Color(0xff1B1A1C),
-            ]),
+            colors: [widget.color, const Color(0xff1B1A1C)]),
       ),
       child: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                //   child: Container(
+                //     width: size.width - 100,
+                //     height: size.width - 100,
+                //     decoration: BoxDecoration(
+                //         boxShadow: [],
+                //         color: primary,
+                //         borderRadius: BorderRadius.circular(20)),
+                //   ),
+                // ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
-                  child: Container(
-                    width: size.width - 100,
-                    height: size.width - 100,
-                    decoration: BoxDecoration(
-                        boxShadow: [],
-                        color: primary,
-                        borderRadius: BorderRadius.circular(20)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                  padding: const EdgeInsets.only(top: 120, left: 30, right: 30),
                   child: Container(
                     width: size.width - 60,
                     height: size.width - 60,
@@ -98,45 +98,50 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
                         image: DecorationImage(
                             image: AssetImage(widget.img), fit: BoxFit.cover),
                         color: primary,
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(10)),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
             SizedBox(
-              width: size.width - 80,
-              height: 70,
+              width: size.width - 60,
+              height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
-                    FeatherIcons.folder,
-                    color: Colors.white,
-                  ),
+                  // const Icon(
+                  //   FeatherIcons.folder,
+                  //   color: Colors.white,
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        widget.title,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600),
+                      SizedBox(
+                        width: 300,
+                        child: Text(
+                          widget.title,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                        ),
                       ),
                       SizedBox(
-                        width: 200,
+                        width: 300,
                         child: Text(
                           widget.descriprion,
                           style: const TextStyle(color: Colors.grey),
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           maxLines: 1,
                         ),
                       ),
                     ],
                   ),
                   const Icon(
-                    FeatherIcons.moreHorizontal,
+                    FeatherIcons.heart,
                     color: Colors.white,
                   ),
                 ],
@@ -144,7 +149,7 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
             ),
             const SizedBox(height: 30),
             Slider(
-                activeColor: primary,
+                activeColor: Colors.white,
                 min: 0,
                 max: 100,
                 value: _currentsliderValue,
@@ -175,23 +180,31 @@ class _MusicDetailPageState extends State<MusicDetailPage> {
             //fiveicon widget is here
             iconbuttons(context),
 
-            const SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Feather.tv,
-                  color: primary,
-                  size: 20,
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  'Chromecast is ready',
-                  style: TextStyle(color: primary, fontSize: 18),
-                )
-              ],
+            const SizedBox(height: 40),
+            Container(
+              width: 220,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color.fromARGB(74, 255, 255, 255),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Feather.cast,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Chromecast is ready',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )
+                ],
+              ),
             )
           ],
 
@@ -238,14 +251,14 @@ iconbuttons(BuildContext context) {
           },
           icon: Container(
             decoration: BoxDecoration(
-              color: primary,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(50),
             ),
             child: Center(
                 child: Icon(
-              isPlaying ? (Icons.stop) : (Icons.play_arrow),
+              isPlaying ? (Icons.play_arrow) : (Icons.stop),
               size: 35,
-              color: Colors.white,
+              color: Colors.black,
             )),
           ),
         ),
